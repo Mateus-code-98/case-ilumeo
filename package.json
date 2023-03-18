@@ -5,10 +5,14 @@
   "main": "index.js",
   "scripts": {
     "validate-env": "ts-node-dev --transpile-only --ignore-watch node_modules src/shared/scripts/validateEnv.ts",
+    "initialize-db": "yarn db:dropAll && yarn db:migrate && ts-node-dev --transpile-only --ignore-watch node_modules src/shared/scripts/seedDataToDB.ts",
     "build": "tsc",
     "start": "yarn validate-env && yarn build && node build/server",
     "dev": "yarn validate-env && ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts",
-    "generateModule": "ts-node-dev --transpile-only --ignore-watch node_modules src/shared/framework/generateModule.ts"
+    "generateModule": "ts-node-dev --transpile-only --ignore-watch node_modules src/shared/framework/generateModule.ts",
+    "db:migrate": "npx sequelize-cli db:migrate",
+    "db:drop": "npx sequelize-cli db:migrate:undo",
+    "db:dropAll": "npx sequelize-cli db:migrate:undo:all"
   },
   "keywords": [],
   "author": "",

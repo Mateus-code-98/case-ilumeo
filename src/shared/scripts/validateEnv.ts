@@ -1,11 +1,11 @@
-import "dotenv/config";
+import * as ENVS from "./../utils/envs";
 import { envSchema } from "../schemas/env.shemas";
 import { validateSchemaService } from "../services/validateSchema.service";
 
 const execute = async () => {
 
     const { haveError, messages } = await validateSchemaService({
-        data: process.env,
+        data: ENVS,
         schema: envSchema
     });
 

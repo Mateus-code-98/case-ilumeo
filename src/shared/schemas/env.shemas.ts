@@ -16,7 +16,7 @@ export const envSchema = Yup.object().shape({
     DB_PASS: STRING,
     DB_USER: STRING,
     DB_PORT: NUMBER,
-    JWT_EXPIRESIN: NUMBER,
+    JWT_EXPIRESIN: STRING,
     JWT_SECRET: STRING,
     MODE: Yup.string().oneOf(MODES_ALLOWED).required(REQUIRED_MESSAGE)
 });

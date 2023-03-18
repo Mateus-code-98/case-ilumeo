@@ -1,5 +1,6 @@
 import Sequelize from "sequelize";
 import { database } from "../../../database/db";
+import { generateCodeService } from "../../../shared/services/generateCodeService.service";
 
 export interface usersAttributes {
 	id: string
@@ -18,6 +19,13 @@ export const UsersModel = database.define<usersInstance>("users", {
 	},
 	code: {
 		type: Sequelize.STRING,
-		allowNull: false
+		allowNull: true
+	}
+}, {
+	hooks: {
+		beforeCreate: async (user: usersInstance) => {
+			const code = await generateCodeService(UsersModel)
+			user.code = code
+		}
 	}
 });

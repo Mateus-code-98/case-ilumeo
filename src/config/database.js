@@ -1,16 +1,12 @@
-require("dotenv/config");
-
-const ENVS = require("../shared/utils/envs");
-
-const { DB_USER, DB_DIALECT, DB_HOST, DB_NAME, DB_PASS, DB_PORT } = ENVS;
+require("dotenv/config")
 
 const config = {
-    username: DB_USER,
-    password: DB_PASS,
-    database: DB_NAME,
-    host: DB_HOST,
-    dialect: DB_DIALECT,
-    port: DB_PORT
-};
+    username: process.env.DB_USER,
+    password: process.env.DB_PASS,
+    database: process.env.DB_NAME,
+    host: process.env.DB_HOST,
+    dialect: process.env.DB_DIALECT,
+    port: process.env.DB_PORT
+}
 
-module.exports = config;
+module.exports = config 

@@ -14,10 +14,12 @@ export const loginService = async (props: ILoginProps) => {
     const user = await User.findOne({ where: { code } });
 
     if (user) {
+
         const token = sign({}, JWT_SECRET, {
             subject: user.id,
-            expiresIn: JWT_EXPIRESIN
+            expiresIn: JWT_EXPIRESIN as string
         })
+        
         return { user, token }
     }
 

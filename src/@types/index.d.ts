@@ -14,7 +14,7 @@ namespace NodeJS {
         DB_PASS: string,
         DB_USER: string,
         DB_PORT: number,
-        JWT_EXPIRESIN: number,
+        JWT_EXPIRESIN: String,
         JWT_SECRET: string,
         MODE: "DEV" | "PROD"
     }
