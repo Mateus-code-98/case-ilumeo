@@ -2,9 +2,9 @@ import cors from "cors";
 import express from "express";
 import { routes } from "../routes";
 import { IRoutesProps } from "../interfaces";
-import { logRoute } from "../middlewares/logRoute";
-import { ExceptionParams } from "../middlewares/exceptionParams";
-import { ExceptionHandler } from "../middlewares/exceptionHandler";
+import { logRoute } from "../middlewares/logRoute.middleware";
+import { ExceptionParams } from "../middlewares/exceptionParams.middleware";
+import { ExceptionHandler } from "../middlewares/exceptionHandler.middleware";
 
 export const globalRoutes: IRoutesProps[] = [
     { method: "use", url: "", middlewares: [cors()] },

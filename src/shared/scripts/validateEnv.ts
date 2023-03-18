@@ -1,11 +1,13 @@
 import "dotenv/config";
 import { envSchema } from "../schemas/env.shemas";
-import { validateSchema } from "../services/validateSchema";
+import { validateSchemaService } from "../services/validateSchema.service";
 
 const execute = async () => {
-    const { haveError, message } = await validateSchema({ data: process.env, schema: envSchema })
+
+    const { haveError, messages } = await validateSchemaService({ data: process.env, schema: envSchema })
     if (haveError) {
-        console.log("\n" + "🔴 " + message + "\n")
+        console.log("\n")
+        messages.forEach((message: string) => console.log("🔴 " + message + "\n"))
         process.exit(1)
     }
     else {
