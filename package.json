@@ -6,6 +6,7 @@
   "scripts": {
     "validate-env": "ts-node-dev --transpile-only --ignore-watch node_modules src/shared/scripts/validateEnv.ts",
     "initialize-db": "yarn db:dropAll && yarn db:migrate && ts-node-dev --transpile-only --ignore-watch node_modules src/shared/scripts/seedDataToDB.ts",
+    "test": "ts-node-dev --transpile-only --ignore-watch node_modules test.ts",
     "build": "tsc",
     "start": "yarn validate-env && yarn build && node build/server",
     "dev": "yarn validate-env && ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts",
@@ -23,6 +24,7 @@
     "express": "^4.18.2",
     "express-async-errors": "^3.1.1",
     "jsonwebtoken": "^9.0.0",
+    "moment": "^2.29.4",
     "pg": "^8.10.0",
     "sequelize": "^6.29.3",
     "typescript": "^5.0.2",

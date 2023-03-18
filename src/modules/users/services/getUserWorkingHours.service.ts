@@ -11,12 +11,16 @@ export const getUserWorkingHoursService = async (props: IGetUserWorkingHoursServ
 
 	const checksByDay: any = {};
 
-	let checks = await getChecksService({ user_id });
+	const result = await getChecksService({ user_id });
+
+	let checks = []
+	for (const check of result) checks.push(check.dataValues)
+
 	checks = breakChecks(checks);
 
 	for (const check of checks) {
-		const createdAt = check.createdAt as string;
-		const dataDoCheck = createdAt.substring(0, 10);
+		const createdAt = check.createdAt as Date;
+		const dataDoCheck = createdAt.toLocaleString().substring(0, 10);
 
 		if (!checksByDay[dataDoCheck]) checksByDay[dataDoCheck] = [check];
 		else checksByDay[dataDoCheck].push(check);
@@ -30,9 +34,7 @@ export const getUserWorkingHoursService = async (props: IGetUserWorkingHoursServ
 		const checks: checksAttributes[] = checksByDay[day];
 
 		const workingHours = checks.reduce((acc: number, check) => {
-			const { finished, createdAt, updatedAt } = check;
-
-			if (!finished) return acc;
+			const { createdAt, updatedAt } = check;
 
 			const checkStart = new Date(createdAt).getTime();
 

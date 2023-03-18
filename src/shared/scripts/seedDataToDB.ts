@@ -11,16 +11,21 @@ const execute = async () => {
     for (let i = 0; i < USERS_TO_CREATE; i++) {
         const new_user = await User.create();
         console.log({ user_code: new_user.code });
+        let minus_days = 0;
         for (let j = 0; j < CHECKS_TO_CREATE; j++) {
-            const new_check = await Check.create({ user_id: new_user.id });
+            minus_days++;
+
+            const new_check = await Check.create({ user_id: new_user.id, finished: true });
 
             const createdAt = new Date(new_check.createdAt);
+            createdAt.setDate(createdAt.getDate() + minus_days);
 
-            const updatedAt = createdAt;
-            updatedAt.setMinutes(updatedAt.getMinutes() + randomMinutes());
-
-            await database.query(`UPDATE checks SET "createdAt" = '${createdAt.toLocaleDateString()}' WHERE id = '${new_check.id}'`);
-            await database.query(`UPDATE checks SET "updatedAt" = '${createdAt.toLocaleDateString()}' WHERE id = '${new_check.id}'`);
+            const updatedAt = new Date(createdAt);
+            const plusMinutes = randomMinutes();
+            updatedAt.setMinutes(updatedAt.getMinutes() + plusMinutes);
+            
+            await database.query(`UPDATE checks SET "createdAt" = '${createdAt.toLocaleString()}' WHERE id = '${new_check.id}'`);
+            await database.query(`UPDATE checks SET "updatedAt" = '${updatedAt.toLocaleString()}' WHERE id = '${new_check.id}'`);
         }
     }
 };

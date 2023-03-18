@@ -8,10 +8,5 @@ interface ICreateFileProps {
 export const createFile = async (props: ICreateFileProps) => {
     const { path, content } = props;
 
-    return new Promise((resolve, reject) => {
-        fs.writeFile(path, content, (err) => {
-            if (err) reject(err)
-            resolve(true)
-        })
-    });
+    fs.writeFileSync(path, content)
 };
