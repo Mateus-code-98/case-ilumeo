@@ -8,5 +8,5 @@ interface IThrowError {
 export const throwError = (props: IThrowError) => {
     const { message, status } = props;
 
-    throw new AppError(message, status)
-}
+    throw new AppError(message, status);
+};

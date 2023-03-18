@@ -4,8 +4,8 @@ import { createFile } from "./createFile.service";
 import { updateFile } from "./updateFile.service";
 
 interface ILogProps {
-    content: string
-    logName: string
+    content: string;
+    logName: string;
 }
 
 export const makeLog = (props: ILogProps) => {
@@ -25,4 +25,4 @@ export const makeLog = (props: ILogProps) => {
 
         }
     });
-}   
+};

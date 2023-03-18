@@ -1,4 +1,4 @@
-export const statusCodes = {
+export const status_codes = {
     OK: 200,
     CREATED: 201,
     NO_CONTENT: 204,
@@ -7,5 +7,6 @@ export const statusCodes = {
     FORBIDDEN: 403,
     NOT_FOUND: 404,
     METHOD_NOT_ALLOWED: 405,
+    CONFLIT: 409,
     INTERNAL_SERVER_ERROR: 500
-}
+};

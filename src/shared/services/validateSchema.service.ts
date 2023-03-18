@@ -6,15 +6,15 @@ interface IValidateSchemaProps {
 }
 
 export const validateSchemaService = async (props: IValidateSchemaProps) => {
-    const { schema, data } = props
+    const { schema, data } = props;
 
     try {
-        await schema.validate(data, { abortEarly: false })
+        await schema.validate(data, { abortEarly: false });
 
-        return { haveError: false, messages: "" }
+        return { haveError: false, messages: "" };
     } catch (err: any) {
 
-        return { haveError: true, messages: err.errors ?? [] }
+        return { haveError: true, messages: err.errors ?? [] };
     }
 
-}
+};

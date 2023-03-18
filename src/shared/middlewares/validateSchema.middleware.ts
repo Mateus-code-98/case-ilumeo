@@ -1,5 +1,5 @@
 import * as Yup from "yup";
-import { statusCodes } from "../utils/statusCodes";
+import { status_codes } from "../utils/status_codes";
 import { NextFunction, Request, Response } from "express";
 import { throwError } from "../services/throwError.service";
 import { validateSchemaService } from "../services/validateSchema.service";
@@ -13,7 +13,7 @@ const validate = async (data: Object, schema: Yup.ObjectSchema<any>) => {
     const { haveError, messages } = await validateSchemaService({ data, schema })
     if (haveError) {
         const message = messages.join(",\n")
-        const status = statusCodes.BAD_REQUEST
+        const status = status_codes.BAD_REQUEST
         throwError({ message, status })
     }
 }

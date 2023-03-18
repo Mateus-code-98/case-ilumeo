@@ -7,9 +7,9 @@ interface IStartCheckServiceProps {
 }
 
 export const startCheckService = async (props: IStartCheckServiceProps) => {
-	const { user_id, transaction } = props
+	const { user_id, transaction } = props;
 
-	const newCheck = await Check.create({ user_id }, { transaction })
+	const newCheck = await Check.create({ user_id }, { transaction });
 
-	return newCheck
+	return newCheck;
 }

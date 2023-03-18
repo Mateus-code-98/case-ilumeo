@@ -6,11 +6,11 @@ interface ISetUpRoutesProps {
 }
 
 export const setUpRoutes = (props: ISetUpRoutesProps) => {
-    const { _routes } = props
+    const { _routes } = props;
 
-    const router = Router()
+    const router = Router();
 
-    _routes.forEach(route => router[route.method](route.url, ...route.middlewares))
+    _routes.forEach(route => router[route.method](route.url, ...route.middlewares));
 
-    return router
-}
+    return router;
+};

@@ -3,25 +3,25 @@ import { database } from "../../../database/db";
 import { finishCheckService } from "../services/finishCheck.service";
 
 export const finishCheckController = async (req: Request, res: Response) => {
-	const { id } = req.params
+	const { id } = req.params;
 
-	const transaction = await database.transaction()
+	const transaction = await database.transaction();
 
 	try {
 
-		const data = { id, transaction }
+		const data = { id, transaction };
 
-		const result = await finishCheckService(data)
+		const result = await finishCheckService(data);
 
-		await transaction.commit()
+		await transaction.commit();
 
-		return res.json(result)
+		return res.json(result);
 
 	} catch (err) {
 
-		await transaction.rollback()
+		await transaction.rollback();
 
-		throw err
+		throw err;
 		
 	}
 }

@@ -34,4 +34,4 @@ export const ChecksModel = database.define<checksInstance>("checks", {
 		onDelete: "CASCADE",
 		onUpdate: "CASCADE"
 	}
-})
+});

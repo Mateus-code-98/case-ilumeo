@@ -20,4 +20,4 @@ export const UsersModel = database.define<usersInstance>("users", {
 		type: Sequelize.STRING,
 		allowNull: false
 	}
-})
+});

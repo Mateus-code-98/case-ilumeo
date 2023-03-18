@@ -1,4 +1,4 @@
-export type RouteMethodsTypes = "get" | "post" | "put" | "delete" | "use"
+export type RouteMethodsTypes = "get" | "post" | "put" | "delete" | "use";
 
 export interface IRoutesProps {
     url: string;

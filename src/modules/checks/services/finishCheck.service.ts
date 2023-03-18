@@ -1,6 +1,6 @@
 import { Transaction } from "sequelize";
 import { Check } from "../../../database/models";
-import { statusCodes } from "../../../shared/utils/statusCodes";
+import { status_codes } from "../../../shared/utils/status_codes";
 import { throwError } from "../../../shared/services/throwError.service";
 
 interface IFinishCheckServiceProps {
@@ -9,21 +9,21 @@ interface IFinishCheckServiceProps {
 }
 
 export const finishCheckService = async (props: IFinishCheckServiceProps) => {
-	const { id, transaction } = props
+	const { id, transaction } = props;
 
 	const check = await Check.findOne({
 		where: { id }, transaction
-	})
+	});
 
 	if (!check?.id) {
-		const message = "Check not found"
-		const status = statusCodes.NOT_FOUND
+		const message = "Check not found";
+		const status = status_codes.NOT_FOUND;
 
-		throwError({ message, status })
+		throwError({ message, status });
 	}
 	else {
-		await check.update({ finished: true }, { transaction })
+		await check.update({ finished: true }, { transaction });
 	}
 
-	return props
+	return props;
 }

@@ -1,4 +1,4 @@
-require("dotenv/config")
+require("dotenv/config");
 
 const config = {
     username: process.env.DB_USER,
@@ -7,6 +7,6 @@ const config = {
     host: process.env.DB_HOST,
     dialect: process.env.DB_DIALECT,
     port: process.env.DB_PORT
-}
+};
 
-module.exports = config 
+module.exports = config;

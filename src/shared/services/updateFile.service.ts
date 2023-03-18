@@ -6,12 +6,12 @@ interface IUpdateFileProps {
 }
 
 export const updateFile = async (props: IUpdateFileProps) => {
-    const { path, content } = props
+    const { path, content } = props;
 
     return new Promise((resolve, reject) => {
         fs.appendFile(path, "\n" + content, (err) => {
             if (err) reject(err)
             resolve(true)
         })
-    })
-}
+    });
+};
