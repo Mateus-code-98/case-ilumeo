@@ -6,7 +6,7 @@ import { updateFile } from "./updateFile.service";
 interface ILogProps {
     content: string;
     logName: string;
-}
+};
 
 export const makeLog = (props: ILogProps) => {
     const { content, logName } = props;

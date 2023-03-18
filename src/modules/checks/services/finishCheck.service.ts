@@ -1,6 +1,6 @@
 import { Transaction } from "sequelize";
 import { Check } from "../../../database/models";
-import { status_codes } from "../../../shared/utils/status_codes";
+import { STATUS_NOT_FOUND } from "../../../shared/utils/status_codes";
 import { throwError } from "../../../shared/services/throwError.service";
 
 interface IFinishCheckServiceProps {
@@ -17,7 +17,7 @@ export const finishCheckService = async (props: IFinishCheckServiceProps) => {
 
 	if (!check?.id) {
 		const message = "Check not found";
-		const status = status_codes.NOT_FOUND;
+		const status = STATUS_NOT_FOUND;
 
 		throwError({ message, status });
 	}

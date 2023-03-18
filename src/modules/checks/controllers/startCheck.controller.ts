@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import { database } from "../../../database/db";
 import { startCheckService } from "../services/startCheck.service";
+import { STATUS_CREATED } from "../../../shared/utils/status_codes";
 
 export const startCheckController = async (req: Request, res: Response) => {
 	const { id: user_id } = req.user;
@@ -15,7 +16,7 @@ export const startCheckController = async (req: Request, res: Response) => {
 
 		await transaction.commit();
 
-		return res.json(result);
+		return res.status(STATUS_CREATED).json(result);
 
 	} catch (err) {
 

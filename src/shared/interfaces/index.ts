@@ -4,4 +4,4 @@ export interface IRoutesProps {
     url: string;
     method: RouteMethodsTypes;
     middlewares: any[];
-}
+};

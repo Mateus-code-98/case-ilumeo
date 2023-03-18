@@ -3,7 +3,7 @@ import { IRoutesProps } from "../interfaces";
 
 interface ISetUpRoutesProps {
     _routes: IRoutesProps[];
-}
+};
 
 export const setUpRoutes = (props: ISetUpRoutesProps) => {
     const { _routes } = props;

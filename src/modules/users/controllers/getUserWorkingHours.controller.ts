@@ -1,4 +1,5 @@
 import { Request, Response } from "express";
+import { STATUS_OK } from "../../../shared/utils/status_codes";
 import { getUserWorkingHoursService } from "../services/getUserWorkingHours.service";
 
 export const getUserWorkingHoursController = async (req: Request, res: Response) => {
@@ -6,5 +7,5 @@ export const getUserWorkingHoursController = async (req: Request, res: Response)
 
 	const result = await getUserWorkingHoursService({ user_id });
 
-	return res.json(result);
+	return res.status(STATUS_OK).json(result);
 }

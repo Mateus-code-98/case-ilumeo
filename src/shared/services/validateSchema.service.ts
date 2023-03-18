@@ -1,9 +1,9 @@
 import * as Yup from "yup";
 
 interface IValidateSchemaProps {
-    schema: Yup.ObjectSchema<any>
-    data: Object
-}
+    schema: Yup.ObjectSchema<any>;
+    data: Object;
+};
 
 export const validateSchemaService = async (props: IValidateSchemaProps) => {
     const { schema, data } = props;
