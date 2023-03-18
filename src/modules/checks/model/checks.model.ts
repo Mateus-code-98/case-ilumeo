@@ -34,4 +34,23 @@ export const ChecksModel = database.define<checksInstance>("checks", {
 		onDelete: "CASCADE",
 		onUpdate: "CASCADE"
 	}
+}, {
+	hooks: {
+		beforeCreate: async (check: checksInstance, options) => {
+			const { user_id } = check;
+			const { transaction } = options;
+			
+			const checksNotFinished = await ChecksModel.findAll({
+				where: { user_id, finished: false }
+			});
+
+			if (checksNotFinished.length > 0) {
+				for (const checkNotFinished of checksNotFinished) {
+					await checkNotFinished.update({
+						finished: true
+					}, { transaction });
+				}
+			}
+		}
+	}
 });
