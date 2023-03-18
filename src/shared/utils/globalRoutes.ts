@@ -6,7 +6,6 @@ import { logRoute } from "../middlewares/logRoute";
 import { ExceptionParams } from "../middlewares/exceptionParams";
 import { ExceptionHandler } from "../middlewares/exceptionHandler";
 
-
 export const globalRoutes: IRoutesProps[] = [
     { method: "use", url: "", middlewares: [cors()] },
     { method: "use", url: "", middlewares: [express.json()] },
