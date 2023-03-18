@@ -5,8 +5,8 @@ export interface checksAttributes {
 	id: string
 	finished: boolean
 	user_id: string
-	createdAt?: string
-	updatedAt?: string
+	createdAt: string | Date
+	updatedAt: string | Date
 }
 
 export interface checksInstance extends Sequelize.Model<checksAttributes, any>, checksAttributes { }
@@ -33,13 +33,21 @@ export const ChecksModel = database.define<checksInstance>("checks", {
 		},
 		onDelete: "CASCADE",
 		onUpdate: "CASCADE"
+	},
+	createdAt: {
+		type: Sequelize.DATE,
+		allowNull: false,
+	},
+	updatedAt: {
+		type: Sequelize.DATE,
+		allowNull: false,
 	}
 }, {
 	hooks: {
 		beforeCreate: async (check: checksInstance, options) => {
 			const { user_id } = check;
 			const { transaction } = options;
-			
+
 			const checksNotFinished = await ChecksModel.findAll({
 				where: { user_id, finished: false }
 			});
