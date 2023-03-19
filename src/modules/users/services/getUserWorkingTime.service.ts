@@ -1,6 +1,8 @@
+import { APP_TIMEZONE } from "../../../shared/utils/app_timezone";
 import { checksAttributes } from "../../checks/model/checks.model";
 import { breakChecks } from "../../checks/services/breakChecks.service";
 import { getChecksService } from "../../checks/services/getChecks.service";
+import { getDateWithTimezoneService } from "../../../shared/services/getDateWithTimezone.service";
 
 interface IGetUserWorkingTimeServiceProps {
 	user_id: string
@@ -45,8 +47,8 @@ export const getUserWorkingTimeService = async (props: IGetUserWorkingTimeServic
 		daysWorked[day] = { workingTime, checks };
 	}
 
-	const today = new Date().toLocaleString("pt-BR").substring(0, 10);
-	console.log({ today })
+	const today = getDateWithTimezoneService(APP_TIMEZONE).toLocaleString("pt-BR").substring(0, 10);
+
 	if (!daysWorked[today]) daysWorked[today] = { workingTime: 0, checks: [] };
 
 	daysWorked.today = daysWorked[today];
