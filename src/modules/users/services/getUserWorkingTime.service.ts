@@ -2,11 +2,11 @@ import { checksAttributes } from "../../checks/model/checks.model";
 import { breakChecks } from "../../checks/services/breakChecks.service";
 import { getChecksService } from "../../checks/services/getChecks.service"
 
-interface IGetUserWorkingHoursServiceProps {
+interface IGetUserWorkingTimeServiceProps {
 	user_id: string
 }
 
-export const getUserWorkingHoursService = async (props: IGetUserWorkingHoursServiceProps) => {
+export const getUserWorkingTimeService = async (props: IGetUserWorkingTimeServiceProps) => {
 	const { user_id } = props;
 
 	const checksByDay: any = {};
@@ -33,7 +33,7 @@ export const getUserWorkingHoursService = async (props: IGetUserWorkingHoursServ
 	for (const day of days) {
 		const checks: checksAttributes[] = checksByDay[day];
 
-		const workingHours = checks.reduce((acc: number, check) => {
+		const workingTime = checks.reduce((acc: number, check) => {
 			const { createdAt, updatedAt } = check;
 
 			const checkStart = new Date(createdAt).getTime();
@@ -45,8 +45,16 @@ export const getUserWorkingHoursService = async (props: IGetUserWorkingHoursServ
 			return acc + checkDuration;
 		}, 0);
 
-		daysWorked[day] = { workingHours, checks };
+		daysWorked[day] = { workingTime, checks };
 	}
+
+	const today = new Date().toLocaleString().substring(0, 10);
+
+	if (!daysWorked[today]) daysWorked[today] = { workingTime: 0, checks: [] };
+
+	daysWorked.today = daysWorked[today];
+
+	delete daysWorked[today];
 
 	return daysWorked;
 }

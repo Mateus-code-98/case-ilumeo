@@ -4,14 +4,14 @@ import { STATUS_OK } from "../../../shared/utils/status_codes";
 import { finishCheckService } from "../services/finishCheck.service";
 
 export const finishCheckController = async (req: Request, res: Response) => {
-	const { id } = req.params;
+	const { id: user_id } = req.user;
 
 	const transaction = await database.transaction();
 
 	try {
 
-		const data = { id, transaction };
-
+		const data = { user_id, transaction };
+		
 		const result = await finishCheckService(data);
 
 		await transaction.commit();
@@ -19,7 +19,7 @@ export const finishCheckController = async (req: Request, res: Response) => {
 		return res.status(STATUS_OK).json(result);
 
 	} catch (err) {
-
+		
 		await transaction.rollback();
 
 		throw err;

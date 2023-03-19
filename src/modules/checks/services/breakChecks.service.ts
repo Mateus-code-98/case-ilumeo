@@ -18,8 +18,8 @@ const splitCheck = (check: checksAttributes, splitDate: Date) => {
     const createdAt = new Date(check.createdAt);
     const updatedAt = new Date(check.updatedAt);
 
-    const check1 = { createdAt, updatedAt: splitDate };
-    const check2 = { createdAt: splitDate, updatedAt };
+    const check1 = { createdAt, updatedAt: splitDate, finished: true };
+    const check2 = { createdAt: splitDate, updatedAt, finished: check.finished };
 
     return [check1, check2] as checksAttributes[];
 }

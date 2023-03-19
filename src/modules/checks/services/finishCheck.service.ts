@@ -4,26 +4,29 @@ import { STATUS_NOT_FOUND } from "../../../shared/utils/status_codes";
 import { throwError } from "../../../shared/services/throwError.service";
 
 interface IFinishCheckServiceProps {
-	id: string
+	user_id: string
 	transaction?: Transaction
 }
 
 export const finishCheckService = async (props: IFinishCheckServiceProps) => {
-	const { id, transaction } = props;
+	const { user_id, transaction } = props;
 
 	const check = await Check.findOne({
-		where: { id }, transaction
+		where: { user_id, finished: false },
+		transaction
 	});
 
 	if (!check?.id) {
-		const message = "Check not found";
+		const message = "Not have check to finish";
 		const status = STATUS_NOT_FOUND;
 
 		throwError({ message, status });
 	}
 	else {
-		await check.update({ finished: true }, { transaction });
+		await check.update({
+			finished: true
+		}, { transaction });
 	}
 
-	return props;
+	return check;
 }
