@@ -46,7 +46,7 @@ export const getUserWorkingTimeService = async (props: IGetUserWorkingTimeServic
 	}
 
 	const today = new Date().toLocaleString("pt-BR").substring(0, 10);
-
+	console.log({ today })
 	if (!daysWorked[today]) daysWorked[today] = { workingTime: 0, checks: [] };
 
 	daysWorked.today = daysWorked[today];
