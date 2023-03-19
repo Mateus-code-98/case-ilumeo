@@ -1,10 +1,17 @@
+
+import "dotenv/config";
 import "express-async-errors";
-import express from "express";
+import { io, serverHttp } from "./app";
 import { PORT } from "./shared/utils/envs";
-import { global_routes } from "./shared/utils/global_routes";
 
-const app = express();
+io.on("connection", async (socket) => {
+    console.log(`Usuário conectado no socket ${socket.id}`)
 
-global_routes.forEach(route => app[route.method](route.url, ...route.middlewares));
+    socket.on("disconnect", async () => {
+        console.log(`Usuário desconectado do socket ${socket.id}`)
+    })
+})
 
-app.listen(PORT, () => console.log(`\n🚀 Server is running on PORT ${PORT}\n`));
+serverHttp.listen(PORT, () => {
+    console.log(`\n🚀 Server is running on PORT ${PORT}\n`)
+})

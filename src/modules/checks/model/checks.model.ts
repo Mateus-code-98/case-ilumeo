@@ -1,5 +1,6 @@
 import Sequelize from "sequelize";
 import { database } from "../../../database/db";
+import { emitService } from "../../../shared/services/emitService.service";
 
 export interface checksAttributes {
 	id: string
@@ -59,6 +60,12 @@ export const ChecksModel = database.define<checksInstance>("checks", {
 					}, { transaction });
 				}
 			}
+		},
+		afterSave: async (check: checksInstance, options) => {
+			const { user_id } = check;
+			const { transaction } = options;
+			if (transaction) transaction.afterCommit(async () => emitService(user_id, {}));
+			else emitService(user_id, {});
 		}
 	}
 });
