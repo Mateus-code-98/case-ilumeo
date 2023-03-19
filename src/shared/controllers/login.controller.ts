@@ -3,7 +3,8 @@ import { STATUS_OK } from "../utils/status_codes";
 import { loginService } from "../services/login.service";
 
 export const loginController = async (req: Request, res: Response) => {
-    const { code } = req.body;
+    let { code } = req.body;
+    code = code?.toUpperCase() ?? "";
 
     const result = await loginService({ code });
 

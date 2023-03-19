@@ -18,7 +18,7 @@ const execute = async () => {
             const new_check = await Check.create({ user_id: new_user.id, finished: true });
 
             const createdAt = new Date(new_check.createdAt);
-            createdAt.setDate(createdAt.getDate() + minus_days);
+            createdAt.setDate(createdAt.getDate() - minus_days);
 
             const updatedAt = new Date(createdAt);
             const plusMinutes = randomMinutes();
