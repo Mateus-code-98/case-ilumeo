@@ -1,10 +1,3 @@
-declare module '*.jpg';
-declare module '*.png';
-declare module '*.ttf';
-declare module '*.pdf';
-declare module 'pluralize-ptbr'
-declare module 'gn-api-sdk-node'
-
 namespace NodeJS {
     interface ProcessEnv {
         PORT: number,
@@ -15,7 +8,6 @@ namespace NodeJS {
         DB_USER: string,
         DB_PORT: number,
         JWT_EXPIRESIN: String,
-        JWT_SECRET: string,
-        MODE: "DEV" | "PROD"
+        JWT_SECRET: string
     }
 }

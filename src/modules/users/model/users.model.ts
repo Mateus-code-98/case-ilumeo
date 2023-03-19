@@ -3,8 +3,8 @@ import { database } from "../../../database/db";
 import { generateCodeService } from "../../../shared/services/generateCodeService.service";
 
 export interface usersAttributes {
-	id: string
-	code: string
+	id: string;
+	code: string;
 }
 
 export interface usersInstance extends Sequelize.Model<usersAttributes, any>, usersAttributes { }

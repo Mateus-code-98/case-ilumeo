@@ -1,4 +1,4 @@
-import Sequelize from "sequelize"
+import Sequelize from "sequelize";
 
 export const generateCodeService = async (model: Sequelize.ModelStatic<any>) => {
     let flag = true

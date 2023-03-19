@@ -2,8 +2,8 @@ import { Transaction } from "sequelize";
 import { Check } from "../../../database/models";
 
 interface IStartCheckServiceProps {
-	user_id: string
-	transaction?: Transaction
+	user_id: string;
+	transaction?: Transaction;
 }
 
 export const startCheckService = async (props: IStartCheckServiceProps) => {
@@ -12,4 +12,4 @@ export const startCheckService = async (props: IStartCheckServiceProps) => {
 	const newCheck = await Check.create({ user_id }, { transaction });
 
 	return newCheck;
-}
+};

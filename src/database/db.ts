@@ -3,6 +3,5 @@ import { Sequelize, Options } from "sequelize";
 
 export const database = new Sequelize({
     ...config,
-    logging: false,
-    timezone: "America/Sao_Paulo"
+    logging: false
 } as Options);

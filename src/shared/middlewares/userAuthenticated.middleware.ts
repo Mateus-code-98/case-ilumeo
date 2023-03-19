@@ -43,4 +43,4 @@ export const UserAuthenticated = async (req: Request, res: Response, next: NextF
         });
 
     }
-}
+};

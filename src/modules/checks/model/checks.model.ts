@@ -3,14 +3,14 @@ import { database } from "../../../database/db";
 import { emitService } from "../../../shared/services/emitService.service";
 
 export interface checksAttributes {
-	id: string
-	finished: boolean
-	user_id: string
-	createdAt: string | Date
-	updatedAt: string | Date
+	id: string;
+	finished: boolean;
+	user_id: string;
+	createdAt: string | Date;
+	updatedAt: string | Date;
 }
 
-export interface checksInstance extends Sequelize.Model<checksAttributes, any>, checksAttributes { }
+export interface checksInstance extends Sequelize.Model<checksAttributes, any>, checksAttributes { };
 
 export const ChecksModel = database.define<checksInstance>("checks", {
 	id: {

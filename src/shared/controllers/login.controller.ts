@@ -8,4 +8,4 @@ export const loginController = async (req: Request, res: Response) => {
     const result = await loginService({ code });
 
     return res.status(STATUS_OK).json(result);
-}
+};

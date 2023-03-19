@@ -1,6 +1,6 @@
 import { checksAttributes } from "../../checks/model/checks.model";
 import { breakChecks } from "../../checks/services/breakChecks.service";
-import { getChecksService } from "../../checks/services/getChecks.service"
+import { getChecksService } from "../../checks/services/getChecks.service";
 
 interface IGetUserWorkingTimeServiceProps {
 	user_id: string
@@ -11,10 +11,7 @@ export const getUserWorkingTimeService = async (props: IGetUserWorkingTimeServic
 
 	const checksByDay: any = {};
 
-	const result = await getChecksService({ user_id });
-
-	let checks = []
-	for (const check of result) checks.push(check.dataValues)
+	let checks = await getChecksService({ user_id });
 
 	checks = breakChecks(checks);
 

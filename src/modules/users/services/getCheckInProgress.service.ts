@@ -12,4 +12,4 @@ export const getCheckInProgressService = async (props: IGetCheckInProgressServic
     });
 
     return checkNotFinished;
-}
+};

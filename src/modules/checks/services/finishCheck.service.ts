@@ -4,8 +4,8 @@ import { STATUS_NOT_FOUND } from "../../../shared/utils/status_codes";
 import { throwError } from "../../../shared/services/throwError.service";
 
 interface IFinishCheckServiceProps {
-	user_id: string
-	transaction?: Transaction
+	user_id: string;
+	transaction?: Transaction;
 }
 
 export const finishCheckService = async (props: IFinishCheckServiceProps) => {
@@ -29,4 +29,4 @@ export const finishCheckService = async (props: IFinishCheckServiceProps) => {
 	}
 
 	return check;
-}
+};

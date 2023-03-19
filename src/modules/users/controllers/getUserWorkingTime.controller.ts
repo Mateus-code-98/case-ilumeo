@@ -8,4 +8,4 @@ export const getUserWorkingTimeController = async (req: Request, res: Response) 
 	const result = await getUserWorkingTimeService({ user_id });
 
 	return res.status(STATUS_OK).json(result);
-}
+};

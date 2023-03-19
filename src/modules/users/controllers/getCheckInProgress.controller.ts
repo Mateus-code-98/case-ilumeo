@@ -8,4 +8,4 @@ export const getCheckInProgressController = async (req: Request, res: Response) 
 	const result = await getCheckInProgressService({ user_id });
 
 	return res.status(STATUS_OK).json(result);
-}
+};

@@ -1,5 +1,5 @@
 import moment from "moment";
-import { checksAttributes } from "../model/checks.model";
+import { checksInstance } from "../model/checks.model";
 
 const isSameDay = (createdAt: Date, updatedAt: Date) => {
     const createdDate = moment(createdAt);
@@ -11,9 +11,9 @@ const isSameDay = (createdAt: Date, updatedAt: Date) => {
     if (updatedDate.isSame(nextDay, "minute")) return true;
 
     return false;
-}
+};
 
-const splitCheck = (check: checksAttributes, splitDate: Date) => {
+const splitCheck = (check: checksInstance, splitDate: Date) => {
     splitDate = new Date(splitDate.setHours(0, 0, 0, 0))
     const createdAt = new Date(check.createdAt);
     const updatedAt = new Date(check.updatedAt);
@@ -21,16 +21,16 @@ const splitCheck = (check: checksAttributes, splitDate: Date) => {
     const check1 = { createdAt, updatedAt: splitDate, finished: true };
     const check2 = { createdAt: splitDate, updatedAt, finished: check.finished };
 
-    return [check1, check2] as checksAttributes[];
-}
+    return [check1, check2] as checksInstance[];
+};
 
-const replaceCheck = (checks: checksAttributes[], index: number, newChecks: checksAttributes[]) => {
+const replaceCheck = (checks: checksInstance[], index: number, newChecks: checksInstance[]) => {
     const updatedChecks = [...checks];
     updatedChecks.splice(index, 1, ...newChecks);
     return updatedChecks;
-}
+};
 
-export const breakChecks = (checks: checksAttributes[]) => {
+export const breakChecks = (checks: checksInstance[]) => {
     for (let index = 0; index < checks.length; index++) {
         const check = checks[index];
         const createdAt = new Date(check.createdAt);
@@ -54,10 +54,10 @@ export const breakChecks = (checks: checksAttributes[]) => {
                 index += newChecks.length - 1;
                 currentCheck = newChecks[1];
                 currentCreatedAt = nextCreatedAt;
-                datesNotInSameDay = !isSameDay(currentCreatedAt, updatedAt)
+                datesNotInSameDay = !isSameDay(currentCreatedAt, updatedAt);
             }
         }
     }
 
     return checks;
-}
+};

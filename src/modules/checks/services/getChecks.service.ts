@@ -1,7 +1,7 @@
 import { Check } from "../../../database/models";
 
 interface IgetChecksServiceProps {
-	user_id: string
+	user_id: string;
 }
 
 export const getChecksService = async (props: IgetChecksServiceProps) => {
@@ -10,4 +10,4 @@ export const getChecksService = async (props: IgetChecksServiceProps) => {
 	const checks = await Check.findAll({ where: { user_id } });
 
 	return checks;
-}
+};

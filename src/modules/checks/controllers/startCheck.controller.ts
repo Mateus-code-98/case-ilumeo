@@ -25,4 +25,4 @@ export const startCheckController = async (req: Request, res: Response) => {
 		throw err;
 
 	}
-}
+};
