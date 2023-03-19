@@ -17,7 +17,7 @@ export const getUserWorkingTimeService = async (props: IGetUserWorkingTimeServic
 
 	for (const check of checks) {
 		const createdAt = check.createdAt as Date;
-		const dataDoCheck = createdAt.toLocaleString().substring(0, 10);
+		const dataDoCheck = createdAt.toLocaleString("pt-BR").substring(0, 10);
 
 		if (!checksByDay[dataDoCheck]) checksByDay[dataDoCheck] = [check];
 		else checksByDay[dataDoCheck].push(check);
@@ -45,7 +45,7 @@ export const getUserWorkingTimeService = async (props: IGetUserWorkingTimeServic
 		daysWorked[day] = { workingTime, checks };
 	}
 
-	const today = new Date().toLocaleString().substring(0, 10);
+	const today = new Date().toLocaleString("pt-BR").substring(0, 10);
 
 	if (!daysWorked[today]) daysWorked[today] = { workingTime: 0, checks: [] };
 

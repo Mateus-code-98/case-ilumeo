@@ -23,8 +23,8 @@ const execute = async () => {
             const plusMinutes = randomMinutes();
             updatedAt.setMinutes(updatedAt.getMinutes() + plusMinutes);
             
-            await database.query(`UPDATE checks SET "createdAt" = '${createdAt.toLocaleString()}' WHERE id = '${new_check.id}'`);
-            await database.query(`UPDATE checks SET "updatedAt" = '${updatedAt.toLocaleString()}' WHERE id = '${new_check.id}'`);
+            await database.query(`UPDATE checks SET "createdAt" = '${createdAt.toLocaleString("pt-BR")}' WHERE id = '${new_check.id}'`);
+            await database.query(`UPDATE checks SET "updatedAt" = '${updatedAt.toLocaleString("pt-BR")}' WHERE id = '${new_check.id}'`);
         }
         console.log(` 👤 - USER CREATED: ${new_user.code}`);
     }
