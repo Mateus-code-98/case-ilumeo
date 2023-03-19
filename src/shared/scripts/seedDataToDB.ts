@@ -7,10 +7,9 @@ const CHECKS_TO_CREATE = 20;
 const randomMinutes = () => Math.floor(Math.random() * 480);
 
 const execute = async () => {
-    console.log("Creating users and checks...")
+    console.log("\n 📝 - CREATING USERS AND CHECKS\n");
     for (let i = 0; i < USERS_TO_CREATE; i++) {
         const new_user = await User.create();
-        console.log({ user_code: new_user.code });
         let minus_days = 0;
         for (let j = 0; j < CHECKS_TO_CREATE; j++) {
             minus_days++;
@@ -27,7 +26,9 @@ const execute = async () => {
             await database.query(`UPDATE checks SET "createdAt" = '${createdAt.toLocaleString()}' WHERE id = '${new_check.id}'`);
             await database.query(`UPDATE checks SET "updatedAt" = '${updatedAt.toLocaleString()}' WHERE id = '${new_check.id}'`);
         }
+        console.log(` 👤 - USER CREATED: ${new_user.code}`);
     }
+    console.log("\n ✅ - DONE\n");
 };
 
 execute();

@@ -5,13 +5,13 @@ import { io, serverHttp } from "./app";
 import { PORT } from "./shared/utils/envs";
 
 io.on("connection", async (socket) => {
-    console.log(`Usuário conectado no socket ${socket.id}`)
+    console.log(`\n 🟢 - USER CONNECTED ON SOCKET ${socket.id}`);
 
     socket.on("disconnect", async () => {
-        console.log(`Usuário desconectado do socket ${socket.id}`)
-    })
-})
+        console.log(`\n 🔴 - USER DISCONNECTED FROM SOCKET ${socket.id}`);
+    });
+});
 
 serverHttp.listen(PORT, () => {
-    console.log(`\n🚀 Server is running on PORT ${PORT}\n`)
-})
+    console.log(`\n 🚀 - SERVER IS RUNNING ON PORT ${PORT}`);
+});

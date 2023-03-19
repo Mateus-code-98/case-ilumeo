@@ -25,5 +25,5 @@ export const loginService = async (props: ILoginProps) => {
 
     const message = "User not found";
     const status = STATUS_NOT_FOUND;
-    throwError({ message, status })
+    throwError({ message, status });
 }

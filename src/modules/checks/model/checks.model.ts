@@ -50,7 +50,8 @@ export const ChecksModel = database.define<checksInstance>("checks", {
 			const { transaction } = options;
 
 			const checksNotFinished = await ChecksModel.findAll({
-				where: { user_id, finished: false }
+				where: { user_id, finished: false },
+				transaction
 			});
 
 			if (checksNotFinished.length > 0) {
