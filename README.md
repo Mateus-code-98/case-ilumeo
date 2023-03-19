@@ -1,4 +1,4 @@
-# Projeto Ponto Ilumeo API
+# Ponto Ilumeo API
 
 Esta é uma aplicação `Node` criada para resolução do case `Ponto Ilumeo`.
 
