@@ -8,7 +8,7 @@
     "db:drop": "npx sequelize-cli db:migrate:undo",
     "db:dropAll": "npx sequelize-cli db:migrate:undo:all",
     "validate-env": "ts-node-dev --transpile-only --ignore-watch node_modules src/shared/scripts/validateEnv.ts",
-    "initialize-db": "yarn db:dropAll && yarn db:migrate && ts-node-dev --transpile-only --ignore-watch node_modules src/shared/scripts/seedDataToDB.ts",
+    "initialize-db": "yarn validate-env && yarn db:dropAll && yarn db:migrate && ts-node-dev --transpile-only --ignore-watch node_modules src/shared/scripts/seedDataToDB.ts",
     "build": "yarn validate-env && tsc",
     "dev": "yarn validate-env && ts-node-dev --transpile-only --ignore-watch node_modules src/server.ts",
     "start": "yarn build && node build/server"

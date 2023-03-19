@@ -10,6 +10,7 @@ const execute = async () => {
     });
 
     if (haveError) {
+        console.log("")
         messages.forEach((message: string) => console.log(" 🔴 - " + message.toUpperCase() + "\n"));
         process.exit(1);
     }
