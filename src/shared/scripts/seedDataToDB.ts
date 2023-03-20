@@ -1,4 +1,5 @@
 import { database } from "../../database/db";
+import { newDate } from "../services/newDate";
 import { Check, User } from "../../database/models";
 
 const USERS_TO_CREATE = 5;
@@ -16,10 +17,10 @@ const execute = async () => {
 
             const new_check = await Check.create({ user_id: new_user.id, finished: true });
 
-            const createdAt = new Date(new_check.createdAt);
+            const createdAt = newDate(new_check.createdAt);
             createdAt.setDate(createdAt.getDate() - minus_days);
 
-            const updatedAt = new Date(createdAt);
+            const updatedAt = newDate(createdAt);
             const plusMinutes = randomMinutes();
             updatedAt.setMinutes(updatedAt.getMinutes() + plusMinutes);
             

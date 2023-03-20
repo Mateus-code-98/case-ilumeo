@@ -1,6 +1,5 @@
 import { Check } from "../../../database/models";
-import { APP_TIMEZONE } from "../../../shared/utils/app_timezone";
-import { getDateWithTimezoneService } from "../../../shared/services/getDateWithTimezone.service";
+import { newDate } from "../../../shared/services/newDate";
 
 interface IgetChecksServiceProps {
 	user_id: string;
@@ -14,8 +13,8 @@ export const getChecksService = async (props: IgetChecksServiceProps) => {
 	const checkInProgress = checks.findIndex((check) => !check.finished);
 
 	if (checkInProgress !== -1) {
-		checks[checkInProgress].updatedAt = getDateWithTimezoneService(APP_TIMEZONE)
-		checks[checkInProgress].dataValues.updatedAt = getDateWithTimezoneService(APP_TIMEZONE)
+		checks[checkInProgress].updatedAt = newDate()
+		checks[checkInProgress].dataValues.updatedAt = newDate()
 	}
 
 

@@ -1,5 +1,6 @@
 import moment from "moment";
 import { checksInstance } from "../model/checks.model";
+import { newDate } from "../../../shared/services/newDate";
 
 const isSameDay = (createdAt: Date, updatedAt: Date) => {
     const createdDate = moment(createdAt);
@@ -14,9 +15,9 @@ const isSameDay = (createdAt: Date, updatedAt: Date) => {
 };
 
 const splitCheck = (check: checksInstance, splitDate: Date) => {
-    splitDate = new Date(splitDate.setHours(0, 0, 0, 0))
-    const createdAt = new Date(check.createdAt);
-    const updatedAt = new Date(check.updatedAt);
+    splitDate = newDate(splitDate.setHours(0, 0, 0, 0))
+    const createdAt = newDate(check.createdAt);
+    const updatedAt = newDate(check.updatedAt);
 
     const check1 = { createdAt, updatedAt: splitDate, finished: true };
     const check2 = { createdAt: splitDate, updatedAt, finished: check.finished };
@@ -33,8 +34,8 @@ const replaceCheck = (checks: checksInstance[], index: number, newChecks: checks
 export const breakChecks = (checks: checksInstance[]) => {
     for (let index = 0; index < checks.length; index++) {
         const check = checks[index];
-        const createdAt = new Date(check.createdAt);
-        const updatedAt = new Date(check.updatedAt);
+        const createdAt = newDate(check.createdAt);
+        const updatedAt = newDate(check.updatedAt);
 
         const datesInSameDay = isSameDay(createdAt, updatedAt)
         if (!datesInSameDay) {
@@ -44,7 +45,7 @@ export const breakChecks = (checks: checksInstance[]) => {
             let datesNotInSameDay = !isSameDay(currentCreatedAt, updatedAt)
 
             while (datesNotInSameDay) {
-                const nextCreatedAt = new Date(currentCreatedAt);
+                const nextCreatedAt = newDate(currentCreatedAt);
                 nextCreatedAt.setDate(currentCreatedAt.getDate() + 1);
 
                 const newChecks = splitCheck(currentCheck, nextCreatedAt);
